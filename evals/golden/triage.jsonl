@@ -1,0 +1,4 @@
+{"id": "t1", "request": "Store customer data and personal data for marketing preferences.", "expected_tracks": ["privacy_review"]}
+{"id": "t2", "request": "New ledger reconciliation job for payment transactions.", "expected_tracks": ["risk_review"]}
+{"id": "t3", "request": "Add API key authentication and encryption for customer data exports.", "expected_tracks": ["infosec_review", "privacy_review"]}
+{"id": "t4", "request": "Payment service stores personal data with encryption at rest.", "expected_tracks": ["infosec_review", "privacy_review", "risk_review"]}

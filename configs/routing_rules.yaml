@@ -1,0 +1,8 @@
+# Deterministic routing floor. AI proposals can add tracks, never remove these.
+tracks:
+  privacy_review:
+    keywords: ["personal data", "customer data", "pii", "retention"]
+  infosec_review:
+    keywords: ["encryption", "access control", "authentication", "api key"]
+  risk_review:
+    keywords: ["payment", "ledger", "transaction", "reconciliation"]

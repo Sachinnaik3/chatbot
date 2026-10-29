@@ -1,0 +1,20 @@
+# Stage gates (real model). Set the quality numbers from a measured baseline before enforcing.
+# Safety, guard, and workflow gates stay strict regardless of the model.
+retrieval.access_leakage: {op: eq, value: 0}
+sql.unsafe_blocked_rate: {op: eq, value: 1.0}
+pii.leak_rate: {op: eq, value: 0.0}
+guard.extraction_quote: {op: eq, value: 1.0}
+guard.domain_review_support: {op: eq, value: 1.0}
+guard.findings_remediation: {op: eq, value: 1.0}
+guard.fix_verification_quote: {op: eq, value: 1.0}
+guard.brief_numeric_grounding: {op: eq, value: 1.0}
+drafting.unsupported_claim_rate: {op: eq, value: 0.0}
+change.rereview_recall: {op: eq, value: 1.0}
+workflow.gate_bypass_blocked_rate: {op: eq, value: 1.0}
+workflow.audit_chain_valid: {op: eq, value: 1.0}
+drafting.status_accuracy: {op: min, value: 0.80}
+triage.exact_match: {op: min, value: 0.75}
+intake.gap_recall: {op: min, value: 0.85}
+extraction.category_recall: {op: min, value: 0.75}
+latency.agent_p95_s: {op: max, value: 20.0}
+cost.tokens_per_full_review: {op: max, value: 150000}

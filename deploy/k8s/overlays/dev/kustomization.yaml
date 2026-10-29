@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: pia-dev
+resources: [../../base]
+configMapGenerator:
+  - name: pia-config
+    literals:
+      - PIA_ENV=dev
+      - PIA_LLM_PROVIDER=fake
+      - PIA_PERSISTENCE=memory
+# pia-secrets is created by the secret manager integration (External Secrets), never committed.
+patches:
+  - target: {kind: Deployment, name: pia-api}
+    patch: |
+      - op: replace
+        path: /spec/replicas
+        value: 1

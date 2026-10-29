@@ -1,0 +1,9 @@
+# Who may decide each human gate. separation_of_duties: the requester cannot decide this gate.
+# allowed_updates: fields the human may change when deciding the gate.
+gates:
+  intake: {teams: [project, governance], allowed_updates: [request_text]}
+  triage: {teams: [governance], allowed_updates: [tracks]}
+  extraction: {teams: [project, architecture], allowed_updates: [spec_text]}
+  draft: {teams: [project], allowed_updates: [spec_text, questions]}
+  review: {teams: [risk, infosec, privacy], allowed_updates: [reviewer_notes], separation_of_duties: true}
+  approval: {teams: [business_owner], allowed_updates: [], separation_of_duties: true}

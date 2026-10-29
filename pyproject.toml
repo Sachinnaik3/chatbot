@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pia-ai-platform"
+version = "0.1.0"
+description = "AI assistant for Project Impact Assessment (PIA) reviews"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.115",
+  "uvicorn[standard]>=0.30",
+  "pydantic>=2.7",
+  "pydantic-settings>=2.3",
+  "pyyaml>=6.0",
+  "sqlalchemy>=2.0",
+  "psycopg[binary]>=3.1",
+  "pgvector>=0.3",
+  "redis>=5.0",
+  "langgraph>=0.2",
+  "sqlglot>=25.0",
+  "anthropic>=0.40",
+  "pyjwt[crypto]>=2.8",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "httpx>=0.27", "ruff>=0.5", "pip-audit>=2.7"]
+postgres = ["langgraph-checkpoint-postgres>=2.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+pia = ["prompts/templates/*.md"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "S"]
+ignore = ["S101"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S"]
+"evals/**" = ["S"]

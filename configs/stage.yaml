@@ -1,0 +1,5 @@
+log_level: INFO
+llm_provider: anthropic
+review_token_budget: 150000
+persistence: postgres
+# oidc_issuer, oidc_audience, oidc_jwks_url come from environment variables

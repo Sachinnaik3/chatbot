@@ -1,0 +1,5 @@
+{"id": "r1", "query": "how must customer payment data be encrypted", "teams": ["project"], "expected_source_ids": ["policy-enc-001"]}
+{"id": "r2", "query": "reconciliation failures detection alerting", "teams": ["risk"], "expected_source_ids": ["past-review-2024-117"]}
+{"id": "r3", "query": "retention period for personal data", "teams": ["project"], "expected_source_ids": ["policy-priv-004"]}
+{"id": "r4", "query": "incident response exercise details", "teams": ["project"], "expected_source_ids": []}
+{"id": "r5", "query": "key rotation for encryption keys", "teams": ["infosec"], "expected_source_ids": ["policy-enc-001"]}

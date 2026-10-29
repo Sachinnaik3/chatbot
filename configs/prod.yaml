@@ -1,0 +1,6 @@
+log_level: WARNING
+llm_provider: anthropic
+review_token_budget: 100000
+cors_origins: []
+persistence: postgres
+rate_limit_per_minute: 60

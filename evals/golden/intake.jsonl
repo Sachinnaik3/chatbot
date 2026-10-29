@@ -1,0 +1,3 @@
+{"id": "i1", "request": "Store personal data for customer preferences in the EU. Retention is 2 years.", "must_flag": [], "must_not_flag": ["retention period for personal data"]}
+{"id": "i2", "request": "Store personal data for customer preferences.", "must_flag": ["retention period for personal data", "regions where data is stored or processed"], "must_not_flag": []}
+{"id": "i3", "request": "Use vendor Acme to process card data for customers in the US.", "must_flag": ["vendor contract or data processing agreement status"], "must_not_flag": []}

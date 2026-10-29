@@ -1,0 +1,41 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: pia-api
+spec:
+  scaleTargetRef: {apiVersion: apps/v1, kind: Deployment, name: pia-api}
+  minReplicas: 2
+  maxReplicas: 6
+  metrics:
+    - type: Resource
+      resource: {name: cpu, target: {type: Utilization, averageUtilization: 70}}
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: pia-api
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels: {app: pia-api}
+---
+# Default deny; allow ingress from the gateway and Prometheus only, egress to DB, Redis, DNS, and the LLM API.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: pia-api
+spec:
+  podSelector:
+    matchLabels: {app: pia-api}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - namespaceSelector: {matchLabels: {name: ingress}}
+        - namespaceSelector: {matchLabels: {name: monitoring}}
+      ports: [{port: 8000}]
+  egress:
+    - to: [{namespaceSelector: {matchLabels: {name: data}}}]
+      ports: [{port: 5432}, {port: 6379}]
+    - to: [{namespaceSelector: {}, podSelector: {matchLabels: {k8s-app: kube-dns}}}]
+      ports: [{port: 53, protocol: UDP}]
+    - ports: [{port: 443}]  # LLM API and OIDC JWKS; restrict by egress gateway in production

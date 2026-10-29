@@ -1,0 +1,2 @@
+{"id": "e1", "spec": "Payment preferences are stored in a new database. The service sends events to the ledger API. Data is encrypted at rest with AES-256.", "expected_categories": ["data_store", "data_flow", "control"]}
+{"id": "e2", "spec": "We integrate with vendor Acme for card tokenization. Keys rotation is logged annually.", "expected_categories": ["vendor", "control"]}

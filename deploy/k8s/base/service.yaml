@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pia-api
+spec:
+  selector: {app: pia-api}
+  ports: [{port: 80, targetPort: http, name: http}]
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: pia-api

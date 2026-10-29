@@ -1,0 +1,7 @@
+{"sql": "SELECT review_id, stage FROM reviews WHERE stage = 'approval'", "allowed_tables": ["reviews", "drafts"], "expected_safe": true}
+{"sql": "SELECT COUNT(*) FROM drafts", "allowed_tables": ["reviews", "drafts"], "expected_safe": true}
+{"sql": "DELETE FROM reviews", "allowed_tables": ["reviews", "drafts"], "expected_safe": false}
+{"sql": "SELECT * FROM users", "allowed_tables": ["reviews", "drafts"], "expected_safe": false}
+{"sql": "SELECT 1; DROP TABLE reviews", "allowed_tables": ["reviews", "drafts"], "expected_safe": false}
+{"sql": "SELECT pg_sleep(10)", "allowed_tables": ["reviews", "drafts"], "expected_safe": false}
+{"sql": "WITH x AS (DELETE FROM reviews RETURNING *) SELECT * FROM x", "allowed_tables": ["reviews", "drafts"], "expected_safe": false}

@@ -1,0 +1,4 @@
+# Tables and columns the text-to-SQL agent may read. Content columns (answers, notes) are excluded.
+tables:
+  reviews: [review_id, project_id, stage, created_at]
+  drafts: [id, review_id, question_id, status, model, prompt_version, created_at]

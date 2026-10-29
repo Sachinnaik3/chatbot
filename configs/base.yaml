@@ -1,0 +1,12 @@
+# Non-secret defaults shared by every environment.
+log_level: INFO
+llm_provider: fake
+llm_model: claude-sonnet-4-5
+llm_timeout_s: 30
+llm_max_retries: 2
+review_token_budget: 200000
+embedding_dim: 256
+cache_ttl_s: 300
+cors_origins: []
+persistence: memory
+rate_limit_per_minute: 120

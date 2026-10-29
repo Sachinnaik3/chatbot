@@ -1,0 +1,38 @@
+name: cd
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  stage:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: stage
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install -e ".[dev]"
+      - name: Offline gate on the real model (stage thresholds)
+        env:
+          PIA_ENV: stage
+          PIA_ANTHROPIC_API_KEY: ${{ secrets.STAGE_ANTHROPIC_API_KEY }}
+        run: python -m evals.offline.run_eval --llm anthropic
+      - name: Build and push image
+        run: echo "build, sign, and push image tagged ${{ github.sha }}"
+      - name: Deploy to stage
+        run: echo "kubectl apply -k deploy/k8s/overlays/stage (image ${{ github.sha }})"
+
+  prod:
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    environment: prod  # requires manual approval in repository settings
+    steps:
+      - uses: actions/checkout@v4
+      - name: Promote the stage-verified image
+        run: echo "promote image for ${{ github.ref_name }} and apply deploy/k8s/overlays/prod as a canary"

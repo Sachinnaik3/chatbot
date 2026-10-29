@@ -1,0 +1,3 @@
+{"id": "c1", "approved": [{"category": "data_store", "name": "Payment preferences are stored", "evidence": "x"}], "current_spec": "Payment preferences are stored in a new database. We now send data to vendor Acme for analytics.", "expected_rereview": true}
+{"id": "c2", "approved": [{"category": "data_store", "name": "Payment preferences are stored in", "evidence": "x"}], "current_spec": "Payment preferences are stored in a new database.", "expected_rereview": false}
+{"id": "c3", "approved": [{"category": "control", "name": "Data is encrypted at", "evidence": "x"}], "current_spec": "A dashboard shows weekly totals to finance.", "expected_rereview": true}
